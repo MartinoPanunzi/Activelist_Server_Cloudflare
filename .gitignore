@@ -1,0 +1,9 @@
+*
+
+!.gitignore
+!templates\
+!/home/mike/Desktop/server_activelist/Activelist/static/media
+!/home/mike/Desktop/server_activelist/Activelist/static/gallery
+!/home/mike/Desktop/server_activelist/Activelist/static/corsi.css
+!/home/mike/Desktop/server_activelist/Activelist/static/style.css
+!/home/mike/Desktop/server_activelist/Activelist/static/styleinfocollab.css
