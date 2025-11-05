@@ -1,0 +1,191 @@
+body {
+  background: linear-gradient(180deg, #0d1b8f 0%, #1a237e 100%);
+}
+
+/* TITOLO */
+.title-container {
+  text-align: center;
+}
+
+.title-container h1 {
+  font-family: "Montserrat", sans-serif;
+  font-size: clamp(2rem, 3vw, 3rem);
+  display: inline-block;
+  padding: 0.3em 0.6em;
+  border-radius: 10px;
+  background-color: #ffdd00;
+  color: #000;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* HEADER ANIMATO */
+.animated-header {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 5vw 3vw;
+  border-radius: 15px;
+  background-image: url("./media/banner.jpg");
+  background-size: cover;
+  background-position: center 45%;
+  background-repeat: no-repeat;
+  background-color: rgba(255, 223, 0, 0.4);
+  background-blend-mode: overlay;
+  box-shadow: 0 0 80px 15px rgba(255, 223, 0, 0.4) inset;
+}
+
+.animated-header h1 {
+  font-family: "Montserrat", sans-serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  display: inline-block;
+  padding: 0.3em 0.6em;
+  border-radius: 10px;
+  background-color: #ffdd00;
+  color: #000;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.animated-header h1:hover {
+  transform: scale(1.1) rotate(-3deg);
+  box-shadow: 0 5px 20px rgba(255, 223, 0, 0.7);
+}
+
+.animated-header p {
+  font-family: "Pacifico", cursive;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  margin-top: 10px;
+  display: inline-block;
+  padding: 0.2em 0.5em;
+  border-radius: 8px;
+  background-color: #ffdd00;
+  color: #000;
+  animation: slideFade 1s forwards;
+  animation-delay: 0.3s;
+}
+
+/* LINEA DECORATIVA */
+hr {
+  border: none;
+  height: 6px;
+  border-radius: 3px;
+  background: linear-gradient(
+    to right,
+    #1a237e 0%,
+    #1a237e 30%,
+    #ffdd00 50%,
+    #1a237e 70%,
+    #1a237e 100%
+  );
+  box-shadow: 0 0 10px #ffdd00, 0 0 10px #0026ff;
+  margin: 40px 0;
+  width: 100%;
+}
+
+/* COLLAB SPAMMER (LOGHI ANIMATI) */
+.collabspammer {
+  height: 10%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.collabspammer img {
+  width: min(100px, 50vw);
+  border-radius: 15px;
+  cursor: pointer;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  animation: popLogo 2s ease-in-out infinite;
+}
+
+@keyframes popLogo {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* CONTENITORE EVENTI */
+.events-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* BOX EVENTO */
+.eventbox {
+  flex: 1 1 300px; /* base 300px, cresce se c�� spazio */
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(135deg, #2c003e, #3f0071, #6a0dad);
+  border-radius: 25px;
+  color: white;
+  padding: 20px;
+  margin-top: 40px;
+  text-align: center;
+  box-shadow: 0 0 100px 10px rgba(156, 144, 36, 1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.eventbox:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 120px 20px rgba(255, 215, 0, 0.7);
+}
+
+.eventboximage {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.eventbox h2 {
+  font-family: "Montserrat", sans-serif;
+  margin: 10px 0;
+}
+
+#subtitle {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  text-align: center;
+  justify-content: center;
+  color: white;
+  border-radius: 10px;
+  padding: 10px 10px;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 1000px) {
+  .eventbox {
+    flex: 1 1 45%; /* 2 per riga su tablet */
+  }
+}
+
+@media (max-width: 600px) {
+  .eventbox {
+    flex: 1 1 90%; /* 1 per riga su mobile */
+  }
+
+  .events-container {
+    gap: 20px;
+    padding: 10px;
+  }
+
+  .collabspammer img {
+    width: 60%;
+  }
+}

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Registrazione completata</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    html, body {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(180deg, #0d1b8f 0%, #1a237e 100%);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 600px;
+      background: rgba(13, 27, 143, 0.9);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 60px rgba(255, 223, 0, 0.6);
+      animation: fadeIn 1s ease forwards;
+    }
+
+    h2 {
+      font-family: 'Montserrat', sans-serif;
+      color: #ffdd00;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 15px;
+    }
+
+    strong {
+      color: #ffdd00;
+      font-size: 1.3rem;
+    }
+
+    img {
+      margin-top: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 25px rgba(255, 223, 0, 0.5);
+      width: 250px;
+      height: auto;
+    }
+
+    a {
+      width: 80%;
+      display: inline-block;
+      margin-top: 25px;
+      background: #ffdd00;
+      color: #0d1b8f;
+      padding: 12px 25px;
+      border-radius: 10px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    a:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 25px rgba(255, 223, 0, 0.8);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2><i class="fa-solid fa-circle-check"></i> Registrazione completata!</h2>
+    <p>Il tuo token personale è:</p>
+    <p><strong>{{ token }}</strong></p>
+
+    <p>Ti è appena stata invata un email con il codice QR da esibire nei locali predisposti!<br><br>Puoi sempre controllare i locali nella sezione collab</p>
+    <img src="{{ qr_url }}" alt="QR Code">
+
+    <a href="{{ url_for('register') }}">
+      <i class="fa-solid fa-rotate-left"></i> <br>Torna alla registrazione
+    </a>
+  </div>
+</body>
+</html>

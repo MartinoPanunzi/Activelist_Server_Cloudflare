@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Verifica Utente</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f9f9f9; padding: 40px; }
+        .container { max-width: 600px; margin: auto; background-color: #fff; padding: 20px; border-radius: 6px; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
+        h2 { margin-bottom: 20px; font-size: 1.5em; }
+        .error { color: #cc0000; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        td, th { text-align: left; padding: 8px; border-bottom: 1px solid #ddd; }
+        img { max-width: 200px; margin-top: 10px; display: block; }
+        a { display: inline-block; margin-top: 20px; text-decoration: none; color: #007bff; }
+        a:hover { text-decoration: underline; }
+        .ruota { transform: rotate(90deg);}
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% if ok %}
+            <h2>Dettagli utente</h2>
+            <table>
+                {% for key, value in user.items() %}
+                    <tr>
+                        <th>{{ key|capitalize }}</th>
+                        <td>
+                            {% if key == 'img_filename' and value %}
+                                <img class="ruota" src="{{ url_for('static', filename='uploads/' ~ value) }}" alt="Foto utente">
+                            {% elif key == 'qr_filename' and value %}
+                                <a href="{{ url_for('static', filename='qrcodes/' ~ value) }}" target="_blank">Visualizza QR Code</a>
+                            {% else %}
+                                {{ value }}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <h2 class="error">Errore nella verifica</h2>
+            <p>Token non valido: <strong>{{ token }}</strong></p>
+        {% endif %}
+        <a href="{{ url_for('register') }}">Torna alla registrazione</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,19 @@
+body {
+  margin: 0;
+  color: #000;
+  overflow-x: hidden;
+  background: linear-gradient(180deg, #0d1b8f 0%, #1a237e 100%);
+  position: relative;
+  animation: fadeScale 1s ease forwards;
+}
+
+header {
+  background: linear-gradient(180deg, #0d1b8f 0%, #1a237e 100%);
+  background-image: url("/static/media/banner.jpg");
+  display: flex;
+  justify-content: center; /* Centra orizzontalmente */
+  align-items: center; /* Centra verticalmente */
+  flex-direction: row;
+  text-align: center;
+  height: 200px; /* Metti un'altezza, altrimenti non si vedr� l'effetto */
+}
