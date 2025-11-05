@@ -47,3 +47,4 @@ configuration_file.json
 users_db.json
 static/qrcodes/
 static/uploads/
+.env
