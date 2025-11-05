@@ -1,2 +1,43 @@
+# --- FILE SENSIBILI E DATI UTENTI ---
 Activelist/configuration_file.json
+Activelist/users_db.json
+Activelist/static/qrcodes/
+Activelist/static/uploads/
+
+# --- PYTHON ---
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# --- AMBIENTE VIRTUALE ---
+venv/
+env/
+.venv/
+
+# --- LOG E CACHE ---
+*.log
+*.tmp
+*.bak
+.cache/
+instance/
+
+# --- DATABASE E FILE DI STATO ---
+*.db
+*.sqlite
+*.sqlite3
+
+# --- IDE / EDITOR ---
+.vscode/
+.idea/
+
+# --- FILE DI BUILD / DISTRIBUZIONE ---
+build/
+dist/
+*.egg-info/
+
+# --- VARIABILI DI AMBIENTE ---
+.env
+.env.*
 
