@@ -1,8 +1,9 @@
 # --- FILE SENSIBILI E DATI UTENTI ---
-Activelist/configuration_file.json
-Activelist/users_db.json
-Activelist/static/qrcodes/
-Activelist/static/uploads/
+configuration_file.json
+users_db.json
+static/qrcodes/
+static/uploads/
+
 
 # --- PYTHON ---
 __pycache__/
@@ -41,3 +42,8 @@ dist/
 .env
 .env.*
 
+# --- FILE SENSIBILI DEL PROGETTO ---
+configuration_file.json
+users_db.json
+static/qrcodes/
+static/uploads/
