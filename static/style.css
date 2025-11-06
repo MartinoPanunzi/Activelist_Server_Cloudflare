@@ -392,7 +392,7 @@ body {
 }
 
 .contact button:hover {
-  transform: scale(1.1) rotate(-3deg);
+  transform: scale(1.1);
   box-shadow: 0 5px 15px rgba(255, 223, 0, 0.6);
 }
 
@@ -759,8 +759,14 @@ hr {
   align-items: center;
   background-color: #ffdd00;
   border-radius: 15px;
-  box-shadow: 0 0 10px 10px rgba(107, 105, 202, 0.5);
   padding: 2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+}
+
+.collab-text:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px 10px rgba(107, 105, 202, 0.5);
+  filter: brightness(1.1);
 }
 
 /* Tablet verticale */
@@ -928,7 +934,6 @@ hr {
     text-align: center;
     background-color: #ffdd00;
     border-radius: 15px;
-    box-shadow: 0 0 10px 10px rgba(107, 105, 202, 0.5);
     display: flex;
     flex-direction: row;
     align-items: center;
