@@ -221,7 +221,7 @@ body {
 }
 
 .carousel-track img {
-  flex: 0 0 1rem;
+  flex: 0 0 5rem;
   height: 30rem;
   padding: 1rem;
   border-radius: 2rem;
