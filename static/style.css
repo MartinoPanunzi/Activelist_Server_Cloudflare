@@ -249,9 +249,7 @@ body {
 .news-events {
   word-wrap: break-word;
   word-break: break-word;
-  max-width: 1200px;
-  margin: 70px auto;
-  padding: 3vw;
+  margin: 5rem 5vw;
   text-align: center;
 }
 
@@ -279,7 +277,7 @@ body {
   background: linear-gradient(135deg, #000428, #001f5b, #003cff);
   border-radius: 15px;
   padding: 20px;
-  width: 300px;
+  width: 20rem;
   color: #fff;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
@@ -292,7 +290,7 @@ body {
 }
 
 .news-card p {
-  font-family: "Roboto", sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 1rem;
 }
 
@@ -303,6 +301,8 @@ body {
 }
 
 .registration-box {
+  padding: 3vw;
+  margin: 5rem auto;
   word-wrap: break-word;
   word-break: break-word;
   display: flex;
@@ -317,19 +317,25 @@ body {
   border-radius: 15px;
   padding: 30px;
   color: white;
-  font-family: "Roboto", sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 1rem;
   margin-bottom: 10px;
   display: inline-block;
 }
 
 .registration-box h3 a {
+  display: inline-block;
   padding: 5px;
-  font-size: clamp(1rem, 1.3vw, 2rem);
-  font-family: "Roboto", sans-serif;
+  text-decoration: none;
+  font-family: "Montserrat", sans-serif;
   background-color: #ffdd00;
   border-radius: 5px;
   color: black;
+  transition: transform 0.2s ease;
+}
+
+.registration-box h3 a:hover {
+  transform: scale(1.1);
 }
 
 .registration-box h1 {
@@ -554,32 +560,32 @@ hr {
   word-wrap: break-word;
   word-break: break-word;
   align-items: normal;
+  width: 90%;
   text-align: center;
-  width: 100%;
-  color: #ffdd00;
-  text-align: center;
-  font-family: "Montserrat", sans-serif;
   font-size: clamp(1.5rem, 40%, 2.5rem);
   display: inline-block;
-  padding: 0.3em 0.6em;
+  padding: 0.5em 0.6em;
   border-radius: 10px;
   background: linear-gradient(135deg, #000428, #001f5b, #003cff);
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
   animation: fadeIn 2s forwards;
   box-shadow: 0 0 60px 20px rgba(255, 223, 0, 0.5);
 }
 
 .boxinformation h5 {
+  font-family: "Inter", sans-serif;
   margin-top: 10px;
   color: white;
 }
 
-.mobile_instagramprofile {
-  margin-top: 20px;
+.boxinformation h2 {
+  font-family: "Montserrat", sans-serif;
+  color: #ffdd00;
+  margin-top: 10px;
 }
 
 .boxinformation_desktop-container {
-  justify-content: space-around;
+  display: flex;
+  justify-content: center;
 }
 
 .underheader-container {
@@ -705,23 +711,39 @@ hr {
   justify-content: space-evenly;
   flex-wrap: wrap;
   gap: 2rem;
+  margin: auto 5vw;
 }
 
 .collab-container {
-  overflow: hidden;
+  margin: 5rem auto;
   word-wrap: break-word;
   word-break: break-word;
   width: 100%;
   text-align: center;
 }
 
+.collab-container h4 {
+  font-family: "Inter", sans-serif;
+  color: white;
+  border-radius: 10px;
+  padding: 10px 10px;
+}
+
+.collab-container h2 {
+  font-family: "Montserrat", sans-serif;
+  color: white;
+}
+
 .collab-container h5 {
-  margin-top: 40px;
+  font-family: "Montserrat", sans-serif;
+  margin-top: 2rem;
+  position: relative;
+  top: 3vh;
   display: inline-block;
   background-color: #04093f;
   color: white;
   border-radius: 10px;
-  padding: 10px 10px;
+  padding: 1vw 1vw;
 }
 
 .collabimage {
@@ -731,10 +753,9 @@ hr {
 }
 
 .collab-title {
+  margin-bottom: 4rem;
   word-wrap: break-word;
   word-break: break-word;
-  margin-bottom: 60px;
-  margin-top: 20px;
   display: inline-block;
   font-family: "Roboto", sans-serif;
   text-align: center;
@@ -876,7 +897,7 @@ hr {
   }
 
   .news-card {
-    width: 90%;
+    width: 100%;
     box-shadow: 0 0 60px 20px rgba(255, 223, 0, 0.5);
   }
 
@@ -901,16 +922,17 @@ hr {
   }
 
   .mobile_instagramprofile {
-    margin: 0;
     color: white;
     display: flex;
-    text-align: justify;
+    align-items: center;
   }
 
   .mobile_instagramprofile h5 {
     position: relative;
-    margin-top: 55px;
+    top: 0.5rem;
+    display: inline-block;
     text-align: center;
+    align-items: center;
   }
 
   .collab-title {

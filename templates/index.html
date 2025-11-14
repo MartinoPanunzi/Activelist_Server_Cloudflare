@@ -46,15 +46,21 @@
         <li>
           <a href="#top"><i class="fa-solid fa-house"></i> Home</a>
         </li>
+
         <li>
-          <a href="{{ url_for('Infocollab') }}"
-              ><i class="fa fa-handshake"></i> Collab</a
-            >
+          <a href="#obiettivi"><i class="fa-solid fa-bullseye"></i> Obiettivi</a>
         </li>
+
+         <li>
+          <a href="#news"><i class="fa-solid fa-newspaper"></i> News</a>
+        </li>
+
         <li>
-          <a href="{{ url_for('register') }}"
-              ><i class="fa fa-id-card"></i> Registrazione</a
-            >
+          <a href="{{ url_for('Infocollab') }}"><i class="fa fa-handshake"></i> Collab</a>
+        </li>
+
+        <li>
+          <a href="{{ url_for('register') }}"><i class="fa fa-id-card"></i> Registrazione</a>
         </li>
         <!--
         <li>
@@ -64,21 +70,17 @@
         </li>
         -->
         <li>
-          <a href="#obiettivi"
-            ><i class="fa-solid fa-bullseye"></i> Obiettivi</a
-          >
+          <a href="#sconti"><i class="fa-solid fa-tags"></i>Sconti</a>
         </li>
-        <li>
-          <a href="#news"><i class="fa-solid fa-newspaper"></i> News</a>
-        </li>
+       
         <li>
           <a href="#contatti"><i class="fa-solid fa-envelope"></i> Contatti</a>
         </li>
+
         <li>
-          <a href="https://www.instagram.com/active_list" target="_blank">
-            <i class="fa-brands fa-instagram"></i> Instagram</a
-          >
+          <a href="https://www.instagram.com/active_list" target="_blank"><i class="fa-brands fa-instagram"></i> Instagram</a>
         </li>
+
       </ul>
     </nav>
 
@@ -132,7 +134,7 @@
           </h3>
         </div>
 
-        <!-- âœ… CAROSELLO -->
+        <!--  CAROSELLO -->
         <div class="carousel-container">
           <div class="carousel-track">
             <img
@@ -195,54 +197,10 @@
               alt="Immagine 8"
             />
           </div>
+
+          
         </div>
       </div>
-
-      <hr />
-
-      <!-- SPONSOR -->
-      <section class="sponsorunderpresentationvideo">
-        <h2>Liste che collaborano</h2>
-        <a href="https://www.instagram.com/equa.listt" target="_blank">
-          <img
-            src="{{ url_for('static', filename='media/equalistlogo.png') }}"
-            alt="Equalist"
-            class="insta-logo"
-            id="sponsorunderpresentationvideoimage"
-          />
-        </a>
-      </section>
-
-      <hr />
-
-      <!-- COLLABORATORI -->
-      <section class="collab-container">
-        <section class="collab-title">
-          <h2>Collab e Sponsor</h2>
-          <h4>Qui troverai tutti i nostri collaboratori e sponsor</h4>
-        </section>
-
-        <section class="collab-text-container">
-          <section class="collab-text">
-            <img
-              src="{{ url_for('static', filename='media/legionariumxactivelist.jpeg') }}"
-              class="collabimage"></img>
-            Legionarium Events
-          </section>
-
-          <section class="collab-text">
-            <img
-              src="{{ url_for('static', filename='media/legionariumxactivelist.jpeg') }}"
-              class="collabimage"
-            />
-            base dodici
-          </section>
-        </section>
-
-        <a href="{{ url_for('Infocollab') }}"
-          ><h5>Clicca per maggiori informazioni</h5></a
-        >
-      </section>
 
       <hr />
 
@@ -267,9 +225,9 @@
         </section>
       </section>
 
-      <hr />
+      <hr>
 
-      <!-- NEWS -->
+       <!-- NEWS -->
       <section class="news-events" id="news">
         <h2>Ultime News & Eventi</h2>
         <div class="news-container">
@@ -282,16 +240,102 @@
           </div>
 
           <div class="news-card popIn">
-            <h3>NEW COLLAB<br />basedodici</h3>
-            <p>Scopri tutte le offerte dedicate agli studenti!</p>
+            <h3>NEW COLLAB<br />Discoteca Tris</h3>
+            <p>
+              La Active List è ufficialmente in collaborazione con la Discoteca
+              Tris!<br />Non perderti gli ultimi aggiornamenti!
+            </p>
           </div>
+
+            <div class="news-card popIn">
+            <h3>NEW COLLAB<br />Discoteca Tris</h3>
+            <p>
+              La Active List è ufficialmente in collaborazione con la Discoteca
+              Tris!<br />Non perderti gli ultimi aggiornamenti!
+            </p>
+          </div>
+
+            <div class="news-card popIn">
+            <h3>NEW COLLAB<br />Discoteca Tris</h3>
+            <p>
+              La Active List è ufficialmente in collaborazione con la Discoteca
+              Tris!<br />Non perderti gli ultimi aggiornamenti!
+            </p>
+          </div>
+
         </div>
+      </section>
+
+      <hr/>
+
+      <!-- COLLABORATORI -->
+      <section class="collab-container">
+        <section class="collab-title">
+          <h2>COLLAB E SPONSOR</h2>
+          <h4>Qui troverai tutti i nostri collaboratori e sponsor</h4>
+        </section>
+
+        <section class="collab-text-container">
+          <section class="collab-text">
+            <img
+              src="{{ url_for('static', filename='media/legionariumxactivelist.jpeg') }}"
+              class="collabimage"></img>
+            Legionarium Events
+          </section>
+
+              <section class="collab-text">
+            <img
+              src="{{ url_for('static', filename='media/legionariumxactivelist.jpeg') }}"
+              class="collabimage"></img>
+            Legionarium Events
+          </section>
+
+                <section class="collab-text">
+            <img
+              src="{{ url_for('static', filename='media/legionariumxactivelist.jpeg') }}"
+              class="collabimage"></img>
+            Legionarium Events
+          </section>
+
+                <section class="collab-text">
+            <img
+              src="{{ url_for('static', filename='media/legionariumxactivelist.jpeg') }}"
+              class="collabimage"></img>
+            Legionarium Events
+          </section>
+
+                <section class="collab-text">
+            <img
+              src="{{ url_for('static', filename='media/legionariumxactivelist.jpeg') }}"
+              class="collabimage"></img>
+            Legionarium Events
+          </section>
+
+                <section class="collab-text">
+            <img
+              src="{{ url_for('static', filename='media/legionariumxactivelist.jpeg') }}"
+              class="collabimage"></img>
+            Legionarium Events
+          </section>
+
+          <section class="collab-text">
+            <img
+              src="{{ url_for('static', filename='media/legionariumxactivelist.jpeg') }}"
+              class="collabimage"
+            />
+            basedodici
+          </section>
+        </section>
+
+        <a href="{{ url_for('Infocollab') }}"
+          ><h5>Clicca per maggiori informazioni</h5></a
+        >
       </section>
 
       <hr />
 
       <!-- REGISTRAZIONE -->
-      <section class="registration-box">
+      <section class="registration-box" id="sconti">
         <h1>Sconti esclusivi!</h1>
         <h3>
           Ricevi il tuo QR per accedere agli sconti registrandoti qui!<br /><br />
@@ -322,7 +366,7 @@
 
     <!-- FOOTER -->
     <footer class="animated-footer">
-      <p>&copy; 2025 Active List</p>
+      <p>&copy; 2025 Active List<br>Info:activelistserver@gmail.com<br>Assistenza diretta: +39 3279856515</p>
     </footer>
 
     <!-- SCRIPT SIDEBAR -->

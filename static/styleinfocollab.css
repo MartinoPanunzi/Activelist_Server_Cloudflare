@@ -1,104 +1,124 @@
+/* ======== STILE BASE ======== */
 body {
+  margin: 0;
   background: linear-gradient(180deg, #0d1b8f 0%, #1a237e 100%);
+  color: #fff;
+  overflow-x: hidden;
 }
 
-/* TITOLO */
-.title-container {
-  text-align: center;
-}
+/* ======== HEADER ANIMATO ======== */
 
-.title-container h1 {
-  font-family: "Montserrat", sans-serif;
-  font-size: clamp(2rem, 3vw, 3rem);
-  display: inline-block;
-  padding: 0.3em 0.6em;
-  border-radius: 10px;
-  background-color: #ffdd00;
-  color: #000;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
-}
-
-/* HEADER ANIMATO */
 .animated-header {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  margin-bottom: 20px;
-  padding: 5vw 3vw;
-  border-radius: 15px;
-  background-image: url("./media/banner.jpg");
-  background-size: cover;
-  background-position: center 45%;
-  background-repeat: no-repeat;
-  background-color: rgba(255, 223, 0, 0.4);
-  background-blend-mode: overlay;
-  box-shadow: 0 0 80px 15px rgba(255, 223, 0, 0.4) inset;
+  display: flex;
+  justify-content: center;
 }
 
 .animated-header h1 {
   font-family: "Montserrat", sans-serif;
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(2rem, 4vw, 3rem);
   display: inline-block;
-  padding: 0.3em 0.6em;
+  padding: 0.3em 0.7em;
   border-radius: 10px;
   background-color: #ffdd00;
   color: #000;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  text-shadow: 1px 2px 5px rgba(0, 0, 0, 0.25);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.animated-header h1:hover {
-  transform: scale(1.1) rotate(-3deg);
-  box-shadow: 0 5px 20px rgba(255, 223, 0, 0.7);
+/* ======== SOTTOTITOLO ======== */
+#subtitle {
+  font-family: "Inter", sans-serif;
+  text-align: center;
+  font-size: clamp(1rem, 2vw, 1.4rem);
+  margin: 0 auto;
+  max-width: 800px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  backdrop-filter: blur(4px);
 }
 
-.animated-header p {
-  font-family: "Pacifico", cursive;
-  font-size: clamp(1rem, 2.5vw, 1.2rem);
-  margin-top: 10px;
-  display: inline-block;
-  padding: 0.2em 0.5em;
-  border-radius: 8px;
-  background-color: #ffdd00;
-  color: #000;
-  animation: slideFade 1s forwards;
-  animation-delay: 0.3s;
-}
-
-/* LINEA DECORATIVA */
+/* ======== LINEA DECORATIVA ======== */
 hr {
   border: none;
-  height: 6px;
+  height: 5px;
   border-radius: 3px;
-  background: linear-gradient(
-    to right,
-    #1a237e 0%,
-    #1a237e 30%,
-    #ffdd00 50%,
-    #1a237e 70%,
-    #1a237e 100%
-  );
-  box-shadow: 0 0 10px #ffdd00, 0 0 10px #0026ff;
-  margin: 40px 0;
-  width: 100%;
+  background: linear-gradient(90deg, #1a237e 0%, #ffdd00 50%, #1a237e 100%);
+  box-shadow: 0 0 10px #ffdd00, 0 0 15px #0026ff;
+  margin: 40px auto;
+  width: 90%;
 }
 
-/* COLLAB SPAMMER (LOGHI ANIMATI) */
-.collabspammer {
-  height: 10%;
+/* ======== GRID EVENTI ======== */
+.events-container {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  gap: 20px;
+  justify-content: space-evenly;
   flex-wrap: wrap;
+  gap: 2rem;
+  margin: auto 5vw;
+}
+
+/* ======== BOX EVENTO ======== */
+.eventbox {
+  display: flex;
+  flex-direction: column;
+  max-width: 15rem;
+  align-items: center;
+  background: linear-gradient(135deg, #2c003e, #3f0071, #6a0dad);
+  border-radius: 25px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 0 40px 5px rgba(255, 215, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.eventbox:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 0 80px 15px rgba(255, 215, 0, 0.6);
+}
+
+.eventboximage {
+  width: 100%;
+  border-radius: 15px;
+  margin-bottom: 1rem;
+  object-fit: cover;
+}
+
+.eventbox h2 {
+  font-family: "Montserrat", sans-serif;
+  margin: 0.5rem 0;
+  font-size: 1.6rem;
+  color: #ffdd00;
+}
+
+.eventbox h3 {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* ======== LOGHI COLLAB ======== */
+.collabspammer {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.2rem;
+  margin-top: 1rem;
 }
 
 .collabspammer img {
-  width: min(100px, 50vw);
-  border-radius: 15px;
+  width: min(80px, 25vw);
+  border-radius: 12px;
   cursor: pointer;
   transition: transform 0.3s ease, filter 0.3s ease;
   animation: popLogo 2s ease-in-out infinite;
+}
+
+.collabspammer img:hover {
+  transform: scale(1.15);
+  filter: brightness(1.2);
 }
 
 @keyframes popLogo {
@@ -106,86 +126,151 @@ hr {
     transform: scale(1);
   }
   50% {
-    transform: scale(1.1);
+    transform: scale(1.05);
   }
   100% {
     transform: scale(1);
   }
 }
 
-/* CONTENITORE EVENTI */
-.events-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 40px;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-/* BOX EVENTO */
-.eventbox {
-  flex: 1 1 300px; /* base 300px, cresce se c�� spazio */
-  max-width: 400px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: linear-gradient(135deg, #2c003e, #3f0071, #6a0dad);
-  border-radius: 25px;
-  color: white;
-  padding: 20px;
-  margin-top: 40px;
-  text-align: center;
-  box-shadow: 0 0 100px 10px rgba(156, 144, 36, 1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.eventbox:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 120px 20px rgba(255, 215, 0, 0.7);
-}
-
-.eventboximage {
-  width: 100%;
+/* ======== LINK HOME ======== */
+.back-home {
+  display: inline-block;
+  font-size: 1.1rem;
+  color: #ffdd00;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.6em 1.2em;
   border-radius: 10px;
-  margin-bottom: 15px;
+  transition: background 0.3s ease, transform 0.3s ease;
 }
 
-.eventbox h2 {
-  font-family: "Montserrat", sans-serif;
-  margin: 10px 0;
+.back-home:hover {
+  background: #ffdd00;
+  color: #000;
+  transform: translateY(-3px);
 }
 
-#subtitle {
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  text-align: center;
-  justify-content: center;
-  color: white;
-  border-radius: 10px;
-  padding: 10px 10px;
-}
+/* ======== RESPONSIVE ======== */
 
-/* RESPONSIVE DESIGN */
-@media (max-width: 1000px) {
+/* Tablet e schermi medi */
+@media (max-width: 1024px) {
+  .events-container {
+    gap: 1.5rem;
+    margin: auto 3vw;
+  }
+
   .eventbox {
-    flex: 1 1 45%; /* 2 per riga su tablet */
+    max-width: 22rem;
+    padding: 1.2rem;
+  }
+
+  .eventbox h2 {
+    font-size: 1.4rem;
+  }
+
+  .eventbox h3 {
+    font-size: 1rem;
   }
 }
 
-@media (max-width: 600px) {
-  .eventbox {
-    flex: 1 1 90%; /* 1 per riga su mobile */
+/* Mobile grande */
+@media (max-width: 768px) {
+  .animated-header {
+    padding: 2.5rem 1rem;
+  }
+
+  #subtitle {
+    font-size: 1rem;
+    padding: 0.9rem 1.2rem;
+    margin: 0 1rem;
   }
 
   .events-container {
-    gap: 20px;
-    padding: 10px;
+    flex-direction: column;
+    align-items: center;
+    margin: auto 4vw;
+  }
+
+  .eventbox {
+    width: 100%;
+    max-width: 26rem;
+  }
+
+  .eventbox h2 {
+    font-size: 1.25rem;
+  }
+
+  .eventbox h3 {
+    font-size: 0.9rem;
+  }
+
+  .collabspammer {
+    gap: 1rem;
   }
 
   .collabspammer img {
-    width: 60%;
+    width: min(70px, 30vw);
+  }
+}
+
+/* Mobile piccolo */
+@media (max-width: 480px) {
+  .animated-header h1 {
+    font-size: 1.8rem;
+    padding: 0.25em 0.6em;
+  }
+
+  #subtitle {
+    font-size: 0.9rem;
+  }
+
+  .eventbox {
+    padding: 1rem;
+    border-radius: 20px;
+  }
+
+  .eventbox h2 {
+    font-size: 1.15rem;
+  }
+
+  .eventbox h3 {
+    font-size: 0.85rem;
+  }
+
+  .eventboximage {
+    border-radius: 12px;
+  }
+
+  .collabspammer {
+    grid-auto-flow: row;
+  }
+
+  .collabspammer img {
+    width: 65%;
+  }
+
+  .back-home {
+    font-size: 0.95rem;
+    padding: 0.5em 1em;
+  }
+}
+
+/* Mobile extra-piccolo */
+@media (max-width: 360px) {
+  .animated-header h1 {
+    font-size: 1.6rem;
+  }
+
+  #subtitle {
+    font-size: 0.85rem;
+  }
+
+  .eventbox {
+    padding: 0.9rem;
+  }
+
+  .collabspammer img {
+    width: 75%;
   }
 }
