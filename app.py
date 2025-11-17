@@ -92,9 +92,8 @@ def make_token():
 def compress_and_save_image(file_storage, out_path, max_size=(800,800), quality=75):
     try:
         img = Image.open(file_storage.stream).convert('RGB')
-        # Applica automaticamente la rotazione EXIF corretta
-        img = ImageOps.exif_transpose(img)
-        
+        img = ImageOps.exif_transpose(img)  # corregge orientamento EXIF
+        img = img.rotate(-90, expand=True)
         img.thumbnail(max_size)
         img.save(out_path, format='JPEG', quality=quality, optimize=True)
         logging.info("Immagine compressa salvata in %s", out_path)
@@ -102,6 +101,7 @@ def compress_and_save_image(file_storage, out_path, max_size=(800,800), quality=
         logging.error("Errore compress_and_save_image: %s", e)
         logging.error(traceback.format_exc())
         raise
+
 
 def generate_qr(data, out_path):
     try:
@@ -120,26 +120,21 @@ def send_email_with_attachment(to_address, subject, body, attachment_path=None):
     if not app.config['SEND_EMAIL']:
         logging.warning("SMTP non configurato: salto invio email.")
         return False
+
     msg = EmailMessage()
     msg['From'] = f"ActiveList Server <{app.config['SMTP_USER']}>"
     msg['To'] = to_address
     msg['Subject'] = subject
     msg.set_content(body)
-    
+
     if attachment_path:
         try:
             abs_path = os.path.abspath(attachment_path)
             with open(abs_path, 'rb') as f:
                 data = f.read()
                 ext = abs_path.split('.')[-1].lower()
-                if ext in ('jpg', 'jpeg'):
-                    subtype = 'jpeg'
-                elif ext == 'png':
-                    subtype = 'png'
-                else:
-                    subtype = 'octet-stream'  # fallback
+                subtype = 'jpeg' if ext in ('jpg', 'jpeg') else 'png'
                 msg.add_attachment(data, maintype='image', subtype=subtype, filename=os.path.basename(abs_path))
-                logging.info(f"Allegato aggiunto: {abs_path} ({len(data)} bytes)")
         except Exception as e:
             logging.error("Errore apertura allegato: %s", e)
             return False
@@ -149,8 +144,8 @@ def send_email_with_attachment(to_address, subject, body, attachment_path=None):
             smtp.starttls()
             smtp.login(app.config['SMTP_USER'], app.config['SMTP_PASS'])
             smtp.send_message(msg)
-        logging.info("Email inviata a %s", to_address)
         return "OK"
+
     except Exception as e:
         logging.error("Errore invio email: %s", e)
         if "Daily user sending limit exceeded" in str(e) or "rate limit" in str(e).lower():
@@ -165,7 +160,8 @@ def load_email_counter():
             with open(EMAIL_COUNTER_FILE, "r", encoding="utf-8") as f:
                 data = json.load(f)
                 return data.get("timestamps", [])
-        except: return []
+        except:
+            return []
     return []
 
 def save_email_counter(timestamps):
@@ -178,24 +174,12 @@ def check_email_limit():
     cutoff = now - EMAIL_WINDOW_HOURS * 3600
     timestamps = [t for t in timestamps if t > cutoff]
     save_email_counter(timestamps)
-    logging.info(f"Timestamps validi: {len(timestamps)}/{EMAIL_LIMIT}")
     return len(timestamps) < EMAIL_LIMIT
 
 def increment_email_counter():
     timestamps = load_email_counter()
     timestamps.append(time.time())
     save_email_counter(timestamps)
-
-def send_email_async(to, subject, body, attachment=None):
-    def task():
-        result = send_email_with_attachment(to, subject, body, attachment)
-        if result == "OK":
-            increment_email_counter()
-        elif result == "LIMIT_EXCEEDED":
-            logging.warning(f"Limite Gmail superato durante invio a {to}")
-    thread = threading.Thread(target=task)
-    thread.daemon = True
-    thread.start()
 
 # --- Routes ---
 @app.route('/')
@@ -207,24 +191,21 @@ def Infocollab():
     return render_template('Infocollab.html')
 
 @app.route('/register', methods=['GET', 'POST'])
-@app.route('/register', methods=['GET', 'POST'])
 def register():
+
     # --- BLOCCO se limite superato ---
     if not check_email_limit():
         return render_template('register.html',
-                               error="Il nostro server ha ricevuto troppe richieste. "
-                                     "Per tutelare i vostri dati e non creare problemi con le registrazioni riprovare tra 24 ore."), 429
+                               error="Il nostro server ha ricevuto troppe richieste. Riprovare tra 24 ore."), 429
 
     if request.method == 'GET':
         return render_template('register.html')
 
     try:
-        # --- Dati dal form ---
         name = request.form.get('name', '').strip()
         email = request.form.get('email', '').strip().lower()
         photo = request.files.get('photo')
 
-        # --- Validazioni ---
         if not name or not email or not photo or photo.filename == '':
             return render_template('register.html', error="Compila tutti i campi!")
 
@@ -234,7 +215,7 @@ def register():
         if any(u.get('email','').lower() == email for u in users_db.values()):
             return render_template('register.html', error="Questa email è già registrata!")
 
-        # --- Preparazione token, percorsi immagini e QR ---
+        # --- Preparazione file ---
         token = make_token()
         safe_name = secure_filename(photo.filename)
         img_filename = f"{token}_{safe_name.rsplit('.',1)[0]}.jpg"
@@ -244,43 +225,46 @@ def register():
         qr_filename = f"{token}.png"
         qr_path = os.path.join(app.config['QR_FOLDER'], qr_filename)
 
-        # --- Genera QR PRIMA dell'email ---
+        # --- Genera QR prima dell’email ---
         generate_qr(verify_url, qr_path)
 
-        # --- Preparazione email ---
         subject = "Il tuo QR code di verifica"
         body = f"Ciao {name},\n\nEcco il link per la verifica: {verify_url}\nIn allegato trovi il QR code."
 
-        # --- Invio email ---
-        if app.config['SEND_EMAIL']:
-            result = send_email_with_attachment(email, subject, body, qr_path)
-        else:
-            result = False  # SMTP non configurato
+        result = send_email_with_attachment(email, subject, body, qr_path) if app.config['SEND_EMAIL'] else False
 
+        # --- Email inviata con successo ---
         if result == "OK":
-            # --- Solo se email inviata correttamente ---
             compress_and_save_image(photo, out_path)
 
-            # --- Salvataggio DB ---
             users_db[token] = {
                 "name": name,
                 "email": email,
                 "img_filename": img_filename,
                 "qr_filename": qr_filename
             }
+
             with open(DB_FILE, "w", encoding="utf-8") as f:
                 json.dump(users_db, f, indent=4, ensure_ascii=False)
 
-            # --- Incremento contatore email ---
             increment_email_counter()
 
             return render_template('success.html',
                                    token=token,
                                    qr_url=url_for('static', filename=f'qrcodes/{qr_filename}'))
 
+        # --- Limite superato ---
         elif result == "LIMIT_EXCEEDED":
+            if os.path.exists(qr_path):
+                os.remove(qr_path)
             return render_template('register.html', error="Limite invio email superato. Riprova più tardi.")
+
+        # --- Email fallita generica ---
         else:
+            if os.path.exists(qr_path):
+                os.remove(qr_path)
+            if os.path.exists(out_path):
+                os.remove(out_path)
             return render_template('register.html', error="Errore invio email. Riprova più tardi.")
 
     except Exception as e:
@@ -295,13 +279,16 @@ def verify():
     token = request.args.get('id')
     user = users_db.get(token)
     if user:
-        img_url = url_for('static', filename=f'uploads/{user.get("img_filename")}') if user.get("img_filename") else None
+        img_url = url_for('static', filename=f'uploads/{user.get('img_filename')}') if user.get('img_filename') else None
         return render_template('verify.html', ok=True, user=user, img_url=img_url)
     return render_template('verify.html', ok=False, token=token)
+
 
 @app.route('/corsi')
 def corsi():
     return render_template('corsi.html')
 
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=False)
+
