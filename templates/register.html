@@ -1,138 +1,155 @@
 <!DOCTYPE html>
 <html lang="it">
-<head>
-  <meta charset="UTF-8">
-  <title>Registrazione Active List</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Registrazione Active List</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
 
-  <style>
-    html, body {
-      height: 100%;
-      width: 100%;
-      margin: 0;
-      padding: 0;
-    }
+    <style>
+      html,
+      body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
 
-    body {
-      font-family: 'Roboto', sans-serif;
-      background: linear-gradient(180deg, #0d1b8f 0%, #1a237e 100%);
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      overflow: hidden;
-      text-align: center;
-    }
+      body {
+        font-family: "Roboto", sans-serif;
+        background: linear-gradient(180deg, #0d1b8f 0%, #1a237e 100%);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        overflow: hidden;
+        text-align: center;
+      }
 
-    .container {
-      width: 90%;
-      max-width: 500px;
-      background: rgba(13, 27, 143, 0.9);
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 0 60px rgba(255, 223, 0, 0.6);
-      animation: fadeIn 1s ease forwards;
-      margin: 0.5em;
-    }
+      .container {
+        width: 90%;
+        max-width: 500px;
+        background: rgba(13, 27, 143, 0.9);
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 0 60px rgba(255, 223, 0, 0.6);
+        animation: fadeIn 1s ease forwards;
+        margin: 0.5em;
+      }
 
-    h2 {
-      font-family: 'Montserrat', sans-serif;
-      color: #ffdd00;
-      margin-bottom: 20px;
-    }
+      h2 {
+        font-family: "Montserrat", sans-serif;
+        color: #ffdd00;
+        margin-bottom: 20px;
+      }
 
-    label {
-      display: block;
-      font-weight: bold;
-      text-align: left;
-      margin-top: 15px;
-    }
+      label {
+        display: block;
+        font-weight: bold;
+        text-align: left;
+        margin-top: 15px;
+      }
 
-    input[type="text"],
-    input[type="email"],
-    input[type="file"] {
-      width: 100%;
-      padding: 12px;
-      margin-top: 6px;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-    }
+      input[type="text"],
+      input[type="email"],
+      input[type="file"] {
+        width: 100%;
+        padding: 12px;
+        margin-top: 6px;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+      }
 
-    input[type="submit"] {
-      background: #ffdd00;
-      color: #0d1b8f;
-      padding: 12px;
-      border: none;
-      border-radius: 10px;
-      font-size: 1rem;
-      cursor: pointer;
-      margin-top: 25px;
-      font-weight: bold;
-      transition: 0.3s ease;
-      width: 100%;
-    }
+      input[type="submit"] {
+        background: #ffdd00;
+        color: #0d1b8f;
+        padding: 12px;
+        border: none;
+        border-radius: 10px;
+        font-size: 1rem;
+        cursor: pointer;
+        margin-top: 25px;
+        font-weight: bold;
+        transition: 0.3s ease;
+        width: 100%;
+      }
 
-    input[type="submit"]:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 25px rgba(255, 223, 0, 0.8);
-    }
+      input[type="submit"]:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 25px rgba(255, 223, 0, 0.8);
+      }
 
-    .error {
-      background: rgba(255, 0, 0, 0.2);
-      border: 1px solid red;
-      color: #ff5555;
-      font-weight: bold;
-      margin-bottom: 15px;
-      padding: 10px;
-      border-radius: 8px;
-    }
+      .error {
+        background: rgba(255, 0, 0, 0.2);
+        border: 1px solid red;
+        color: #ff5555;
+        font-weight: bold;
+        margin-bottom: 15px;
+        padding: 10px;
+        border-radius: 8px;
+      }
 
-    a.back-home {
-      display: inline-block;
-      margin-top: 25px;
-      color: #ffdd00;
-      text-decoration: none;
-      font-weight: bold;
-      transition: 0.3s;
-    }
+      a.back-home {
+        display: inline-block;
+        margin-top: 25px;
+        color: #ffdd00;
+        text-decoration: none;
+        font-weight: bold;
+        transition: 0.3s;
+      }
 
-    a.back-home:hover {
-      color: white;
-    }
+      a.back-home:hover {
+        color: white;
+      }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h2><i class="fa-solid fa-id-card"></i> Registrazione Active List</h2>
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2><i class="fa-solid fa-id-card"></i> Registrazione Active List</h2>
 
-    {% if error %}
+      {% if error %}
       <div class="error">{{ error }}</div>
-    {% endif %}
+      {% endif %}
 
-    <form action="{{ url_for('register') }}" method="POST" enctype="multipart/form-data">
-      <label>Nome:</label>
-      <input type="text" name="name" value="{{ name or '' }}" required>
+      <form
+        action="{{ url_for('register') }}"
+        method="POST"
+        enctype="multipart/form-data"
+      >
+        <label>Nome:</label>
+        <input type="text" name="name" value="{{ name or '' }}" required />
 
-      <label>Email (@liceotorelli.edu.it):</label>
-      <input type="email" name="email" value="{{ email or '' }}" required>
+        <label>Email (@liceotorelli.edu.it):</label>
+        <input type="email" name="email" value="{{ email or '' }}" required />
 
-      <label>Foto:</label>
-      <input type="file" name="photo" accept="image/*" required>
+        <label>Carica un selfie:</label>
+        <input type="file" name="photo" accept="image/*" required />
 
-      <input type="submit" value="Registrati">
-    </form>
+        <input type="submit" value="Registrati" />
+      </form>
 
-    <a href="{{ url_for('home') }}" class="back-home">
-      <i class="fa-solid fa-arrow-left"></i> Torna alla Home
-    </a>
-  </div>
-</body>
+      <a href="{{ url_for('home') }}" class="back-home">
+        <i class="fa-solid fa-arrow-left"></i> Torna alla Home
+      </a>
+    </div>
+  </body>
 </html>

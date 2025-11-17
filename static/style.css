@@ -221,8 +221,8 @@ body {
 }
 
 .carousel-track img {
-  flex: 0 0 5rem;
-  height: 30rem;
+  flex: 0 0 10rem;
+  height: 25rem;
   padding: 1rem;
   border-radius: 2rem;
   align-content: center;
@@ -999,5 +999,11 @@ hr {
     object-fit: cover;
     filter: brightness(0.65);
     z-index: 1;
+  }
+}
+
+@media (min-width: 2000px) {
+  .bg-video-container {
+    max-width: 70rem;
   }
 }

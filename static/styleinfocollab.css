@@ -1,36 +1,44 @@
-/* ======== STILE BASE ======== */
+/* ===== GLOBAL ===== */
+* {
+  box-sizing: border-box;
+}
+
 body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   margin: 0;
   background: linear-gradient(180deg, #0d1b8f 0%, #1a237e 100%);
   color: #fff;
   overflow-x: hidden;
+  overflow-wrap: anywhere;
 }
 
-/* ======== HEADER ANIMATO ======== */
-
+/* ===== HEADER ===== */
 .animated-header {
   display: flex;
   justify-content: center;
+  padding: 2rem 1rem;
 }
 
 .animated-header h1 {
   font-family: "Montserrat", sans-serif;
   font-size: clamp(2rem, 4vw, 3rem);
-  display: inline-block;
   padding: 0.3em 0.7em;
   border-radius: 10px;
   background-color: #ffdd00;
   color: #000;
   text-shadow: 1px 2px 5px rgba(0, 0, 0, 0.25);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
 }
 
-/* ======== SOTTOTITOLO ======== */
+/* ===== SUBTITLE ===== */
 #subtitle {
   font-family: "Inter", sans-serif;
   text-align: center;
   font-size: clamp(1rem, 2vw, 1.4rem);
-  margin: 0 auto;
+  margin: 1rem auto;
   max-width: 800px;
   background: rgba(255, 255, 255, 0.1);
   padding: 1rem 1.5rem;
@@ -38,7 +46,7 @@ body {
   backdrop-filter: blur(4px);
 }
 
-/* ======== LINEA DECORATIVA ======== */
+/* ===== LINE ===== */
 hr {
   border: none;
   height: 5px;
@@ -49,20 +57,21 @@ hr {
   width: 90%;
 }
 
-/* ======== GRID EVENTI ======== */
 .events-container {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 2rem;
-  margin: auto 5vw;
+  margin: 0 auto;
+  max-width: 1200px;
 }
 
-/* ======== BOX EVENTO ======== */
+/* ===== EVENT BOX ===== */
 .eventbox {
   display: flex;
   flex-direction: column;
-  max-width: 15rem;
+  width: 100%;
+  max-width: 300px; /* Limite massimo per desktop */
   align-items: center;
   background: linear-gradient(135deg, #2c003e, #3f0071, #6a0dad);
   border-radius: 25px;
@@ -77,6 +86,10 @@ hr {
   box-shadow: 0 0 80px 15px rgba(255, 215, 0, 0.6);
 }
 
+a {
+  color: white;
+  text-decoration: underline;
+}
 .eventboximage {
   width: 100%;
   border-radius: 15px;
@@ -98,7 +111,7 @@ hr {
   line-height: 1.5;
 }
 
-/* ======== LOGHI COLLAB ======== */
+/* ===== COLLAB LOGO ===== */
 .collabspammer {
   display: grid;
   grid-auto-flow: column;
@@ -133,7 +146,7 @@ hr {
   }
 }
 
-/* ======== LINK HOME ======== */
+/* ===== BACK HOME ===== */
 .back-home {
   display: inline-block;
   font-size: 1.1rem;
@@ -151,126 +164,46 @@ hr {
   transform: translateY(-3px);
 }
 
-/* ======== RESPONSIVE ======== */
-
-/* Tablet e schermi medi */
-@media (max-width: 1024px) {
-  .events-container {
-    gap: 1.5rem;
-    margin: auto 3vw;
-  }
-
-  .eventbox {
-    max-width: 22rem;
-    padding: 1.2rem;
-  }
-
-  .eventbox h2 {
-    font-size: 1.4rem;
-  }
-
-  .eventbox h3 {
-    font-size: 1rem;
-  }
-}
-
-/* Mobile grande */
+/* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-  .animated-header {
-    padding: 2.5rem 1rem;
-  }
-
-  #subtitle {
-    font-size: 1rem;
-    padding: 0.9rem 1.2rem;
-    margin: 0 1rem;
-  }
-
   .events-container {
     flex-direction: column;
-    align-items: center;
-    margin: auto 4vw;
+    gap: 1.5rem;
+    width: 90%;
   }
 
   .eventbox {
-    width: 100%;
-    max-width: 26rem;
-  }
-
-  .eventbox h2 {
-    font-size: 1.25rem;
-  }
-
-  .eventbox h3 {
-    font-size: 0.9rem;
-  }
-
-  .collabspammer {
-    gap: 1rem;
-  }
-
-  .collabspammer img {
-    width: min(70px, 30vw);
-  }
-}
-
-/* Mobile piccolo */
-@media (max-width: 480px) {
-  .animated-header h1 {
-    font-size: 1.8rem;
-    padding: 0.25em 0.6em;
-  }
-
-  #subtitle {
-    font-size: 0.9rem;
-  }
-
-  .eventbox {
+    max-width: 90%;
     padding: 1rem;
-    border-radius: 20px;
+    margin: 0 auto;
   }
 
-  .eventbox h2 {
-    font-size: 1.15rem;
-  }
-
-  .eventbox h3 {
-    font-size: 0.85rem;
-  }
-
-  .eventboximage {
-    border-radius: 12px;
-  }
-
-  .collabspammer {
-    grid-auto-flow: row;
-  }
-
-  .collabspammer img {
-    width: 65%;
-  }
-
-  .back-home {
-    font-size: 0.95rem;
-    padding: 0.5em 1em;
+  #subtitle {
+    font-size: 1rem;
+    padding: 0.9rem 1rem;
   }
 }
 
-/* Mobile extra-piccolo */
+@media (max-width: 480px) {
+  .eventbox {
+    max-width: 95%;
+    padding: 0.8rem;
+  }
+
+  #subtitle {
+    font-size: 0.9rem;
+    padding: 0.7rem 1rem;
+  }
+}
+
 @media (max-width: 360px) {
-  .animated-header h1 {
-    font-size: 1.6rem;
+  .eventbox {
+    max-width: 100%;
+    padding: 0.6rem;
   }
 
   #subtitle {
     font-size: 0.85rem;
-  }
-
-  .eventbox {
-    padding: 0.9rem;
-  }
-
-  .collabspammer img {
-    width: 75%;
+    padding: 0.5rem 0.8rem;
   }
 }
