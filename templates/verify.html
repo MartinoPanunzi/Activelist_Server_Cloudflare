@@ -4,53 +4,128 @@
     <meta charset="UTF-8" />
     <title>Verifica Utente</title>
     <style>
-      body {
-        font-family: Arial, sans-serif;
-        background-color: #f9f9f9;
-        padding: 40px;
+      /* Reset base */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
       }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f4f6f8;
+        padding: 20px;
+        color: #333;
+      }
+
       .container {
         max-width: 600px;
         margin: auto;
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 6px;
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        background-color: #ffffff;
+        padding: 25px 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
       }
+
+      .container:hover {
+        transform: translateY(-2px);
+      }
+
       h2 {
         margin-bottom: 20px;
-        font-size: 1.5em;
+        font-size: 1.8em;
+        color: #0056b3;
+        text-align: center;
       }
+
       .error {
-        color: #cc0000;
+        color: #d9534f;
+        font-size: 1em;
+        line-height: 1.5em;
+        text-align: center;
       }
+
       table {
         width: 100%;
         border-collapse: collapse;
         margin-top: 15px;
       }
+
       td,
       th {
         text-align: left;
-        padding: 8px;
-        border-bottom: 1px solid #ddd;
+        padding: 10px;
+        border-bottom: 1px solid #e1e4e8;
+        word-break: break-word;
       }
+
+      th {
+        color: #0056b3;
+        font-weight: 600;
+        width: 40%;
+      }
+
+      td {
+        color: #555;
+      }
+
+      /* Immagini centrata e senza rotazione */
       img {
-        max-width: 200px;
-        margin-top: 10px;
         display: block;
+        margin: 10px auto; /* centra */
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        transform: rotate(0deg); /* nessuna rotazione */
       }
+
+      /* Bottone e link */
       a {
         display: inline-block;
         margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
         text-decoration: none;
-        color: #007bff;
+        border-radius: 8px;
+        transition: background-color 0.3s;
+        text-align: center;
       }
+
       a:hover {
-        text-decoration: underline;
+        background-color: #0056b3;
       }
-      .ruota {
-        transform: rotate(90deg);
+
+      /* Responsive */
+      @media (max-width: 640px) {
+        .container {
+          padding: 20px 15px;
+        }
+
+        h2 {
+          font-size: 1.5em;
+        }
+
+        th,
+        td {
+          padding: 8px;
+        }
+
+        a {
+          width: 100%;
+          padding: 12px 0;
+        }
+      }
+
+      @media (max-width: 400px) {
+        h2 {
+          font-size: 1.3em;
+        }
+
+        body {
+          padding: 10px;
+        }
       }
     </style>
   </head>
@@ -65,7 +140,6 @@
           <td>
             {% if key == 'img_filename' and value %}
             <img
-              class="ruota"
               src="{{ url_for('static', filename='uploads/' ~ value) }}"
               alt="Foto utente"
             />

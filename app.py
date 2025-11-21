@@ -72,7 +72,7 @@ app.config['SEND_EMAIL'] = bool(app.config['SMTP_USER'] and app.config['SMTP_PAS
 
 # --- Costanti limite email ---
 EMAIL_LIMIT = 480
-EMAIL_WINDOW_HOURS = 36
+EMAIL_WINDOW_HOURS = 24
 
 # --- Carica DB utenti ---
 users_db = {}
@@ -89,17 +89,33 @@ if os.path.exists(DB_FILE):
 def make_token():
     return uuid.uuid4().hex
 
-def compress_and_save_image(file_storage, out_path, max_size=(800,800), quality=75):
+def compress_and_save_image(file_storage, out_path, max_size=(800, 800), quality=75):
+    """
+    Salva l'immagine compressa sempre in verticale.
+    - max_size: dimensione massima (width, height)
+    - quality: qualità JPEG
+    """
     try:
         img = Image.open(file_storage.stream).convert('RGB')
-        img = ImageOps.exif_transpose(img)  # corregge orientamento EXIF
-        img = img.rotate(-90, expand=True)
+
+        # Corregge orientamento basato su EXIF
+        img = ImageOps.exif_transpose(img)
+
+        # Forza sempre verticale (altezza >= larghezza)
+        width, height = img.size
+        if width > height:
+            img = img.rotate(90, expand=True)
+
+        # Ridimensiona mantenendo proporzioni
         img.thumbnail(max_size)
+
+        # Salva immagine compressa
         img.save(out_path, format='JPEG', quality=quality, optimize=True)
-        logging.info("Immagine compressa salvata in %s", out_path)
+
+        logging.info("Immagine compressa e salvata in verticale in %s", out_path)
+
     except Exception as e:
-        logging.error("Errore compress_and_save_image: %s", e)
-        logging.error(traceback.format_exc())
+        logging.error("Errore compress_and_save_image: %s", e, exc_info=True)
         raise
 
 
@@ -212,7 +228,18 @@ def register():
         if not email.endswith("@liceotorelli.edu.it"):
             return render_template('register.html', error="Usa un indirizzo @liceotorelli.edu.it")
 
-        if any(u.get('email','').lower() == email for u in users_db.values()):
+        # --- RICARICA SEMPRE DB per evitare problemi multi-worker ---
+        try:
+            if os.path.exists(DB_FILE):
+                with open(DB_FILE, "r", encoding="utf-8") as f:
+                    current_db = json.load(f)
+            else:
+                current_db = {}
+        except:
+            current_db = {}
+
+        # Controllo email duplicata
+        if any(u.get('email', '').lower() == email for u in current_db.values()):
             return render_template('register.html', error="Questa email è già registrata!")
 
         # --- Preparazione file ---
@@ -225,7 +252,7 @@ def register():
         qr_filename = f"{token}.png"
         qr_path = os.path.join(app.config['QR_FOLDER'], qr_filename)
 
-        # --- Genera QR prima dell’email ---
+        # --- Genera QR ---
         generate_qr(verify_url, qr_path)
 
         subject = "Il tuo QR code di verifica"
@@ -233,19 +260,26 @@ def register():
 
         result = send_email_with_attachment(email, subject, body, qr_path) if app.config['SEND_EMAIL'] else False
 
-        # --- Email inviata con successo ---
+        # --- EMAIL OK ---
         if result == "OK":
+
+            # Salva immagine compressa
             compress_and_save_image(photo, out_path)
 
-            users_db[token] = {
+            # Aggiorna DB in memoria locale
+            current_db[token] = {
                 "name": name,
                 "email": email,
                 "img_filename": img_filename,
                 "qr_filename": qr_filename
             }
 
+            # Riscrive DB sul disco (salvataggio sicuro)
             with open(DB_FILE, "w", encoding="utf-8") as f:
-                json.dump(users_db, f, indent=4, ensure_ascii=False)
+                json.dump(current_db, f, indent=4, ensure_ascii=False)
+
+            # Aggiorna il DB del worker corrente
+            users_db[token] = current_db[token]
 
             increment_email_counter()
 
@@ -253,13 +287,13 @@ def register():
                                    token=token,
                                    qr_url=url_for('static', filename=f'qrcodes/{qr_filename}'))
 
-        # --- Limite superato ---
+        # --- Limite email superato ---
         elif result == "LIMIT_EXCEEDED":
             if os.path.exists(qr_path):
                 os.remove(qr_path)
             return render_template('register.html', error="Limite invio email superato. Riprova più tardi.")
 
-        # --- Email fallita generica ---
+        # --- FALLIMENTO GENERICO ---
         else:
             if os.path.exists(qr_path):
                 os.remove(qr_path)
@@ -273,15 +307,18 @@ def register():
         return render_template('register.html',
                                error="Si è verificato un errore. Contatta l'assistenza."), 500
 
-
 @app.route('/verify')
 def verify():
     token = request.args.get('id')
     user = users_db.get(token)
+
     if user:
-        img_url = url_for('static', filename=f'uploads/{user.get('img_filename')}') if user.get('img_filename') else None
-        return render_template('verify.html', ok=True, user=user, img_url=img_url)
-    return render_template('verify.html', ok=False, token=token)
+        img_filename = user.get("img_filename")
+        img_url = url_for("static", filename=f"uploads/{img_filename}") if img_filename else None
+        return render_template("verify.html", ok=True, user=user, img_url=img_url)
+
+    return render_template("verify.html", ok=False, token=token)
+
 
 
 @app.route('/corsi')

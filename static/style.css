@@ -97,6 +97,7 @@ body {
   align-items: center;
   position: relative;
   width: 100%;
+  height: auto;
   max-width: 25rem;
   overflow: hidden;
   margin: auto;
@@ -106,7 +107,7 @@ body {
 
 #bg-video {
   width: 100%;
-  height: 100%;
+  height: auto;
   object-fit: cover;
   filter: brightness(0.65);
   z-index: 1;
@@ -332,6 +333,439 @@ body {
   border-radius: 5px;
   color: black;
   transition: transform 0.2s ease;
+}
+box-shadow: 0 0 60px 20px rgba(255, 223, 0, 0.5);
+}
+
+.boxinformation h5 {
+  font-family: "Inter", sans-serif;
+  margin-top: 10px;
+  color: white;
+}
+
+.boxinformation h2 {
+  font-family: "Montserrat", sans-serif;
+  color: #ffdd00;
+  margin-top: 10px;
+}
+
+.boxinformation_desktop-container {
+  display: flex;
+  justify-content: center;
+}
+
+.underheader-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+}
+
+#voteimage {
+  width: 30%;
+}
+
+#voteimagereflected {
+  width: 30%;
+  transform: scaleX(-1);
+}
+
+/* SIDEBAR + HAMBURGER */
+/* HAMBURGER */
+.hamburger {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  font-size: 1.8rem;
+  color: #ffdd00;
+  cursor: pointer;
+  z-index: 1100;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 10px 15px;
+  border-radius: 10px;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.hamburger:hover {
+  transform: scale(1.1);
+  background: rgba(255, 221, 0, 0.7);
+  color: #0d1b8f;
+}
+
+/* SIDEBAR A SCOMPARSA */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -250px; /* nascosta di default */
+  width: 230px;
+  height: auto;
+  background: #0d1b8f;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  box-shadow: 4px 0 15px rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: left 0.4s ease;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(255, 223, 0, 0.6);
+}
+
+.sidebar.active {
+  left: 0;
+}
+
+.sidebar-logo img {
+  width: 120px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 20px rgba(255, 223, 0, 0.6);
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+}
+
+.sidebar ul li {
+  width: 100%;
+}
+
+.sidebar ul li a {
+  display: block;
+  padding: 15px 20px;
+  color: #ffdd00;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.sidebar ul li a i {
+  margin-right: 10px;
+}
+
+.sidebar ul li a:hover {
+  background: #ffdd00;
+  color: #0d1b8f;
+  transform: translateX(5px);
+}
+
+/* OVERLAY */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease;
+  z-index: 900;
+}
+
+.overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.collab-text-container {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin: auto 5vw;
+}
+
+.collab-container {
+  margin: 5rem auto;
+  word-wrap: break-word;
+  word-break: break-word;
+  width: 100%;
+  text-align: center;
+}
+
+.collab-container h4 {
+  font-family: "Inter", sans-serif;
+  color: white;
+  border-radius: 10px;
+  padding: 10px 10px;
+}
+
+.collab-container h2 {
+  font-family: "Montserrat", sans-serif;
+  color: white;
+}
+
+.collab-container h5 {
+  font-family: "Montserrat", sans-serif;
+  margin-top: 2rem;
+  position: relative;
+  top: 3vh;
+  display: inline-block;
+  background-color: #04093f;
+  color: white;
+  border-radius: 10px;
+  padding: 1vw 1vw;
+}
+
+.collabimage {
+  width: 10rem;
+  border-radius: 10px;
+  margin-right: 2rem;
+}
+
+.collab-title {
+  margin-bottom: 4rem;
+  word-wrap: break-word;
+  word-break: break-word;
+  display: inline-block;
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+  background: linear-gradient(135deg, #000428, #001f5b, #003cff);
+  border-radius: 15px;
+  padding: 20px;
+  color: #fff;
+  box-shadow: 0 0 50px 1px rgba(202, 199, 26, 0.952);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+}
+
+.collab-text {
+  word-wrap: break-word;
+  word-break: break-word;
+  width: 100%;
+  max-width: 25rem;
+  word-wrap: break-word;
+  display: flex;
+  text-align: center;
+  display: flex;
+  font-family: "Montserrat", sans-serif;
+  align-items: center;
+  background-color: #ffdd00;
+  border-radius: 15px;
+  padding: 2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+}
+
+.collab-text:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px 10px rgba(107, 105, 202, 0.5);
+  filter: brightness(1.1);
+}
+
+/* Tablet verticale */
+@media (min-width: 600px) and (max-width: 768px) {
+  #voteimage {
+    display: none;
+  }
+
+  #voteimagereflected {
+    display: none;
+  }
+}
+
+/* Tablet orizzontale */
+@media (min-width: 768px) and (max-width: 1024px) {
+  #voteimage {
+    display: none;
+  }
+
+  #voteimagereflected {
+    display: none;
+  }
+}
+
+/* RESPONSIVE MOBILE */
+@media (max-width: 600px) {
+  .side-layout .vertical-container {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin: 0 10px;
+  }
+
+  #voteimage {
+    display: none;
+  }
+
+  #voteimagereflected {
+    display: none;
+  }
+
+  .googlemodulebox {
+    width: 100%;
+    margin: auto;
+    padding: 15px 10px;
+    border-radius: 15px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 100px 0px rgba(255, 223, 0, 0.5);
+    transform: scale(0.95);
+    opacity: 0;
+    animation: fadeScale 1s ease forwards;
+    animation-delay: 1s;
+    color: #fff;
+  }
+
+  .googlemoduleimage {
+    cursor: pointer;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    width: 100%;
+    animation: popInstaLogo 2s ease-in-out infinite;
+  }
+
+  .vertical-item {
+    width: 5vw;
+  }
+
+  .logoandtitle img {
+    width: 50vw;
+    height: auto;
+  }
+
+  .side-layout .vertical-item {
+    max-width: 90%;
+    flex: 1 1 auto;
+    aspect-ratio: 9 / 16;
+  }
+
+  .contact {
+    max-width: 90%;
+    padding: 5vw;
+  }
+
+  .fQa-container {
+    display: flex;
+    gap: 30px;
+    margin: 30px auto;
+    padding: 20px;
+  }
+
+  .instagramprofile {
+    flex: 1 1 80%;
+  }
+
+  .collabimage {
+    width: 40%;
+  }
+
+  .instagramprofile .insta-logo {
+    display: none;
+  }
+
+  .news-container {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .news-card {
+    width: 100%;
+    box-shadow: 0 0 60px 20px rgba(255, 223, 0, 0.5);
+  }
+
+  .contact {
+    max-width: 60vw;
+    margin: 0 auto 50px auto;
+    padding: 5vw;
+    border-radius: 15px;
+    background: linear-gradient(135deg, #000428, #001f5b, #003cff);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 60px 20px rgba(255, 223, 0, 0.5);
+    transform: scale(0.95);
+    opacity: 0;
+    animation: fadeScale 1s ease forwards;
+    animation-delay: 1s;
+    color: #fff;
+  }
+
+  .instagramprofile h2 {
+    display: none;
+  }
+
+  .mobile_instagramprofile {
+    color: white;
+    display: flex;
+    align-items: center;
+  }
+
+  .mobile_instagramprofile h5 {
+    position: relative;
+    top: 0.5rem;
+    display: inline-block;
+    text-align: center;
+    align-items: center;
+  }
+
+  .collab-title {
+    font-family: "Roboto", sans-serif;
+    text-align: center;
+    border-radius: 15px;
+    padding: 20px;
+    width: auto;
+    color: #fff;
+    box-shadow: 0 0 50px 1px rgba(202, 199, 26, 0.952);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+  }
+
+  .collab-text {
+    word-wrap: break-word;
+    word-break: break-word;
+    width: auto;
+    font-family: "Montserrat", sans-serif;
+    margin: 20px;
+    padding: 10px 10px;
+    text-align: center;
+    background-color: #ffdd00;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .collab-text h2 {
+    margin: auto;
+    font-size: clamp(12px, 5vw, 18px);
+    overflow-wrap: break-word;
+  }
+
+  .mobile_instagramprofile .insta-logo {
+    margin-top: 40px;
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    border-radius: 15px;
+    width: min(100px, 50vw);
+    height: auto;
+    margin-bottom: 20px;
+    animation: popInstaLogo 2s ease-in-out infinite;
+  }
+
+  /* BACKGROUND VIDEO */
+  .bg-video-container {
+    position: relative;
+    width: 100%;
+    height: 60vh;
+    overflow: hidden;
+    margin-bottom: 50px;
+    border-radius: 15px;
+    box-shadow: 0 0 50px 10px rgba(255, 223, 0, 0.2) inset;
+  }
+
+  #bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.65);
+    z-index: 1;
+  }
 }
 
 .registration-box h3 a:hover {
@@ -1002,7 +1436,7 @@ hr {
   }
 }
 
-@media (min-width: 2000px) {
+@media (min-width: 2200px) {
   .bg-video-container {
     max-width: 70rem;
   }

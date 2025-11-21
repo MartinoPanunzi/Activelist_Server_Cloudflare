@@ -124,7 +124,17 @@
   </head>
   <body>
     <div class="container">
-      <h2><i class="fa-solid fa-id-card"></i> Registrazione Active List</h2>
+      <h2>
+        <i class="fa-solid fa-id-card"></i> Registrazione Active List<br />
+      </h2>
+      <h3>
+        Questo è il nostro portale di registrazione ufficiale.<br />Inserendo il
+        tuo nome, la tua email istituzionale e un tuo selfie (a scopo
+        identificativo) ti verrà mostrato un QR code grazie al quale potrai
+        certificare di essere uno studente del Liceo G.Torelli e accedere agli
+        sconti dedicati.<br />Vi preghiamo di inserire i dati corretti per
+        ricevere il vostro QR senza problemi.<br />
+      </h3>
 
       {% if error %}
       <div class="error">{{ error }}</div>
@@ -143,6 +153,16 @@
 
         <label>Carica un selfie:</label>
         <input type="file" name="photo" accept="image/*" required />
+
+        <h5>
+          Ti ricordiamo che inserendo qui i tuoi dati accetti la gestione dei
+          medesimi per la finalità sopra indicata.<br />
+          Il tuo token è generato in modo casuale secondo lo standard RFC 4122 e
+          i metadati delle foto caricate non vengono salvati nel nostro
+          server.<br />I tuoi dati non saranno condivisi o utilizzati per
+          secondi scopi.<br />Per qualsiasi dubbio o domanda puoi contattarci
+          alla nostra email activelistserver@gmail.com<br />
+        </h5>
 
         <input type="submit" value="Registrati" />
       </form>
