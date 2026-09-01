@@ -1,8 +1,23 @@
-# --- FILE SENSIBILI E DATI UTENTI ---
+# --- FILE SENSIBILI E DATI UTENTI (reali) ---
 configuration_file.json
 users_db.json
-static/qrcodes/
-static/uploads/
+static/qrcodes/*
+static/uploads/*
+!static/qrcodes/.gitkeep
+!static/uploads/.gitkeep
+# Demo consentiti (anonimizzati) - 3 utenti portfolio
+!static/uploads/a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a1b2_demo.jpg
+!static/uploads/b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a1b2c3d4_demo.jpg
+!static/uploads/c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a1b2c3d4e5_demo.jpg
+!static/qrcodes/a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a1b2.png
+!static/qrcodes/b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a1b2c3d4.png
+!static/qrcodes/c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a1b2c3d4e5.png
+# Backup reali mai su git
+*.bak-real
+*.bak
+configuration_file.json.raspberry.bak
+users_db.json.bak-real
+email_counter.json.bak
 
 
 # --- PYTHON ---
@@ -12,17 +27,24 @@ __pycache__/
 *.pyd
 *.so
 
-# --- AMBIENTE VIRTUALE ---
+# --- AMBIENTE VIRTUALE (Raspberry venv committato per errore, ora ignorato) ---
 venv/
 env/
 .venv/
+bin/
+lib/
+lib64/
+pyvenv.cfg
 
 # --- LOG E CACHE ---
 *.log
 *.tmp
 *.bak
 .cache/
-instance/
+instance/*
+!instance/.gitkeep
+gunicorn.sock
+__pycache__/
 
 # --- DATABASE E FILE DI STATO ---
 *.db
@@ -42,9 +64,9 @@ dist/
 .env
 .env.*
 
-# --- FILE SENSIBILI DEL PROGETTO ---
-configuration_file.json
-users_db.json
-static/qrcodes/
-static/uploads/
-.env
+# --- FILE SENSIBILI DEL PROGETTO (duplicato rimosso, vedi sopra) ---
+# Esempi pubblici consentiti
+!configuration_file.example.json
+!users_db.example.json
+!PORTFOLIO_CASE_STUDY.md
+!README.md

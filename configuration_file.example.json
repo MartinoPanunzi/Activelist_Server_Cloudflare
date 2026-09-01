@@ -1,0 +1,7 @@
+{
+  "BASE_URL": "http://127.0.0.1:5000",
+  "SMTP_SERVER": "smtp.gmail.com",
+  "SMTP_PORT": 587,
+  "SMTP_USER": "",
+  "SMTP_PASS": ""
+}

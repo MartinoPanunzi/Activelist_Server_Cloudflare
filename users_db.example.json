@@ -1,0 +1,20 @@
+{
+    "a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a1b2": {
+        "name": "Mario Rossi",
+        "email": "mario.rossi@liceotorelli.edu.it",
+        "img_filename": "a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a1b2_demo.jpg",
+        "qr_filename": "a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a1b2.png"
+    },
+    "b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a1b2c3d4": {
+        "name": "Giulia Bianchi",
+        "email": "giulia.bianchi@liceotorelli.edu.it",
+        "img_filename": "b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a1b2c3d4_demo.jpg",
+        "qr_filename": "b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a1b2c3d4.png"
+    },
+    "c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a1b2c3d4e5": {
+        "name": "Luca Verdi",
+        "email": "luca.verdi@liceotorelli.edu.it",
+        "img_filename": "c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a1b2c3d4e5_demo.jpg",
+        "qr_filename": "c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a1b2c3d4e5.png"
+    }
+}
