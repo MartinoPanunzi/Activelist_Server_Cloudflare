@@ -18,6 +18,11 @@ static/uploads/*
 configuration_file.json.raspberry.bak
 users_db.json.bak-real
 email_counter.json.bak
+# Legacy / deprecated
+app_old.py
+email_utils.py
+test.json
+pyvenv.cfg
 
 
 # --- PYTHON ---
@@ -50,6 +55,7 @@ __pycache__/
 *.db
 *.sqlite
 *.sqlite3
+email_counter.json
 
 # --- IDE / EDITOR ---
 .vscode/

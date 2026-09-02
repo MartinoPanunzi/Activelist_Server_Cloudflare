@@ -3,156 +3,118 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Collaborazioni e Sponsor</title>
-
-    <!-- Font & Icons -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    />
-
-    <!-- CSS -->
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='styleinfocollab.css') }}"
-    />
+    <title>Collaborazioni e Sponsor — Active List</title>
+    <meta name="description" content="Tutte le collaborazioni e gli sponsor di Active List: eventi, sconti e convenzioni per gli studenti del Liceo Torelli." />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='styleinfocollab.css') }}" />
   </head>
-
   <body>
-    <!-- HEADER -->
+    <!-- NAV TOP -->
+    <nav class="topnav">
+      <a href="{{ url_for('home') }}" class="topnav__back"><i class="fa-solid fa-arrow-left"></i> Home</a>
+      <span class="topnav__crumb">Collab e Sponsor</span>
+    </nav>
+
+    <!-- HEADER come home -->
     <section class="animated-header">
-      <div class="title-container">
-        <h1>Collab e Sponsor</h1>
-      </div>
+      <h1>Collab e Sponsor</h1>
     </section>
 
     <h3 id="subtitle">
       Qui troverai maggiori informazioni riguardo alle nostre collaborazioni, ai
-      nostri sponsor e ai nostri eventi programmati
+      nostri sponsor e ai nostri eventi
     </h3>
 
     <hr />
 
-    <!-- EVENTI -->
-    <section class="events-container">
-      <div class="eventbox">
-        <img
-          src="{{ url_for('static', filename='media/legionariumxactivelist.jpeg') }}"
-          alt="evento"
-          class="eventboximage"
-        />
-        <h2>Legionarium Events</h2>
-        <h3>
-          Collaborazione ufficiale con Legionarium Events! Abbiamo accordi per
-          feste ed eventi nelle date di Halloween, dei 100 giorni e del Prom!<br /><br />
-          Inoltre incontro con DJ Pekka per l'assemblea d'Istituto e settimana
-          gratuita all'Eden Spa!<br /><br />
-          Locali disponibili:<br /><br />
-          Tris Arena<br />Tris Garden<br />Baia Imperiale<br />Peter Pan<br />Mamamia<br />
-        </h3>
+    <!-- GRID EVENTI -->
+    <main class="container">
+      <section class="events-grid">
 
-        <section class="collabspammer">
-          <a
-            href="https://www.instagram.com/legionarium_events/?hl=it"
-            target="_blank"
-          >
-            <img
-              src="{{ url_for('static', filename='media/instalogo.png') }}"
-              alt="Instagram"
-            />
-          </a>
-        </section>
+        <!-- 1 Legionarium -->
+        <article class="card">
+          <div class="card__media">
+            <img src="{{ url_for('static', filename='media/legionariumxactivelist.jpeg') }}" alt="Legionarium Events" loading="lazy" />
+            <span class="card__tag card__tag--event"><i class="fa-solid fa-star"></i> Eventi ufficiali</span>
+          </div>
+          <div class="card__body">
+            <h2 class="card__title">Legionarium Events</h2>
+            <p class="card__desc">Partner ufficiale per feste ed eventi: Halloween, 100 giorni e Prom. In più DJ Pekka per l'assemblea e settimana gratuita all'Eden Spa.</p>
+            <ul class="card__list">
+              <li><i class="fa-solid fa-location-dot"></i> Tris Arena · Tris Garden · Baia Imperiale · Peter Pan · Mamamia</li>
+            </ul>
+          </div>
+          <div class="card__footer">
+            <a href="https://www.instagram.com/legionarium_events/?hl=it" target="_blank" rel="noopener" class="btn btn--ghost"><i class="fa-brands fa-instagram"></i> Instagram</a>
+          </div>
+        </article>
+
+        <!-- 2 Sconti - card ampia -->
+        <article class="card card--wide">
+          <div class="card__media">
+            <img src="{{ url_for('static', filename='media/sconti.jpeg') }}" alt="Sconti ActiveList" loading="lazy" />
+            <span class="card__tag card__tag--sconto"><i class="fa-solid fa-tags"></i> Convenzioni</span>
+          </div>
+          <div class="card__body">
+            <h2 class="card__title">Tutti gli sconti in un posto</h2>
+            <p class="card__desc">Mostra il QR in cassa e ottieni lo sconto dedicato. Valido solo per studenti verificati.</p>
+            <div class="pills">
+              <span class="pill"><strong>Basedodici</strong> — 10%</span>
+              <span class="pill"><strong>Pino Bar</strong> — 10%</span>
+              <span class="pill"><strong>Artemis</strong> — 15% su 2 capi</span>
+              <span class="pill"><strong>Special Night</strong> — 10%</span>
+              <span class="pill"><strong>Trattoria da Ugo</strong> — 15%</span>
+              <span class="pill"><strong>Sale&Pepe</strong> — 10%</span>
+              <span class="pill"><strong>Villa Marina</strong> — 10% menù alla carta</span>
+              <span class="pill"><strong>Games Time</strong> — 10% usati / 5% fumetti</span>
+              <span class="pill"><strong>Gusto Alternativo</strong> — 10%</span>
+            </div>
+            <p class="card__note"><i class="fa-solid fa-circle-info"></i> Dettagli e limitazioni nella pagina di verifica QR.</p>
+          </div>
+        </article>
+
+        <!-- 3 FAN -->
+        <article class="card">
+          <div class="card__media">
+            <img src="{{ url_for('static', filename='media/fanculb.png') }}" alt="FAN Eventi" loading="lazy" />
+            <span class="card__tag"><i class="fa-solid fa-people-group"></i> Network</span>
+          </div>
+          <div class="card__body">
+            <h2 class="card__title">FAN Eventi</h2>
+            <p class="card__desc">Network su moda, benessere e divertimento. Vantaggi esclusivi: locali Albulena & Buddha, festa pre-elezione lista e co-organizzazione 100 giorni.</p>
+            <p class="card__desc">Progetto possibile grazie a <a href="https://www.instagram.com/rick.fiorani?igsh=MTFrbWFubmI0dnR1bA==" target="_blank" rel="noopener">Riccardo Fiorani</a>.</p>
+          </div>
+          <div class="card__footer">
+            <a href="https://www.instagram.com/active_list?igsh=MXAzczljaG41NGpjMg==" target="_blank" rel="noopener" class="btn btn--primary"><i class="fa-brands fa-instagram"></i> @active_list</a>
+          </div>
+        </article>
+
+        <!-- 4 ScuolaZoo -->
+        <article class="card">
+          <div class="card__media">
+            <img src="{{ url_for('static', filename='media/scuolazoo_logo.jpeg') }}" alt="ScuolaZoo" loading="lazy" />
+            <span class="card__tag card__tag--school"><i class="fa-solid fa-graduation-cap"></i> Scuola</span>
+          </div>
+          <div class="card__body">
+            <h2 class="card__title">ScuolaZoo</h2>
+            <p class="card__desc">Assemblee d'istituto indimenticabili e annuario scolastico co-prodotto con ScuolaZoo, il media più grande d'Italia per studenti.</p>
+          </div>
+          <div class="card__footer">
+            <a href="https://www.instagram.com/scuolazoo/" target="_blank" rel="noopener" class="btn btn--ghost"><i class="fa-brands fa-instagram"></i> @scuolazoo</a>
+          </div>
+        </article>
+
+      </section>
+
+      <div class="cta">
+        <a href="{{ url_for('home') }}" class="btn btn--light"><i class="fa-solid fa-arrow-left"></i> Torna alla Home</a>
+        <a href="{{ url_for('register') }}" class="btn btn--accent"><i class="fa-solid fa-id-card"></i> Ottieni il tuo QR</a>
       </div>
+    </main>
 
-      <div class="eventbox">
-        <img
-          src="{{ url_for('static', filename='media/sconti.jpeg') }}"
-          alt="evento"
-          class="eventboximage"
-        />
-        <h2>Sconti!</h2>
-        <h3>
-          ActiveList ha pensato a tutto!<br />Ecco tutti gli sconti a cui hai
-          diritto:<br /><br />
-          Basedodici: 10% di sconto<br /><br />
-          Pino Bar: 10% di sconto<br /><br />
-          Artemis: 15% di sconto su un acquisto minimo di due capi<br /><br />
-          Special Night: 10% di sconto<br /><br />Trattoria da Ugo: 15% di
-          sconto<br /><br />
-          Gastonomia Sale&Pepe: 10% di sconto<br /><br />
-          Villa Marina: 10% di sconto su menù alla carta, valido da lunedì a
-          venerdi esclusi i festivi<br /><br />
-          Games Time: 10% di sconto su giochi usati, Funko Pop e statue. 5% di
-          sconto sui fumetti<br /><br />
-          Gusto Alternativo: 10% di sconto
-        </h3>
-      </div>
-
-      <div class="eventbox">
-        <img
-          src="{{ url_for('static', filename='/media/fanculb.png') }}"
-          alt="evento"
-          class="eventboximage"
-        />
-        <h2>FAN</h2>
-        <h3>
-          Collaborazione ufficiale con Fan Eventi!<br />Avrai accesso a vantaggi
-          in moltissimi ambiti: abbigliamento, benessere, divertimento...<br />
-          Abbiamo ottenuto vantaggi dedicati al Liceo Torelli quali sconti nei
-          locali albulena, buddha e altri locali, festa di pre-elezione della
-          lista, possibilità di creare eventi in collaborazione durante l'anno
-          scolastico corrente e di organizzare i 100 giorni con vantaggi
-          esclusivi!<br />
-          Tieniti aggiornato sul nostro profilo
-          <a
-            href="https://www.instagram.com/active_list?igsh=MXAzczljaG41NGpjMg=="
-            >Instagram</a
-          >
-          e dai un occhiata al profilo di
-          <a
-            href="https://www.instagram.com/rick.fiorani?igsh=MTFrbWFubmI0dnR1bA=="
-            >Riccardo Fiorani</a
-          >, il ragazzo che ha reso possibile questa collaborazione!
-        </h3>
-      </div>
-
-      <div class="eventbox">
-        <img
-          src="{{ url_for('static', filename='/media/scuolazoo_logo.jpeg') }}"
-          alt="evento"
-          class="eventboximage"
-        />
-        <h2>ScuolaZoo</h2>
-        <h3>
-          Collaborazione ufficiale con ScuolaZoo!<br />Active List si occuperà
-          di gestire assemblee di istituto indimeticabili organizzate
-          direttamente da ScuolaZoo.<br />
-          In più abbiamo la possibilità di realizzare l'annuario scolastico in
-          collaborazione con loro!<br />
-        </h3>
-
-        <section class="collabspammer">
-          <a href="https://www.instagram.com/scuolazoo/" target="_blank">
-            <img
-              src="{{ url_for('static', filename='media/instalogo.png') }}"
-              alt="Instagram"
-            />
-          </a>
-        </section>
-      </div>
-    </section>
-
-    <hr />
-
-    <!-- TORNA ALLA HOME -->
-    <section style="text-align: center; margin: 40px">
-      <a href="{{ url_for('home') }}" class="back-home">
-        <i class="fa-solid fa-arrow-left"></i> Torna alla Home
-      </a>
-    </section>
+    <footer class="foot">
+      <p>&copy; 2025 Active List — Liceo Torelli · <a href="mailto:activelistserver@gmail.com">activelistserver@gmail.com</a></p>
+    </footer>
   </body>
 </html>

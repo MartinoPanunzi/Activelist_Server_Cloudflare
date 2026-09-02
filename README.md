@@ -52,11 +52,12 @@ cp configuration_file.example.json configuration_file.json
 # Modifica BASE_URL se vuoi: http://127.0.0.1:5000 di default
 
 # 4. Inizializza DB + demo (solo prima volta, o dopo git clone)
-python seed_demo.py        # crea instance/activelist.db + 3 utenti demo + QR/avatar
-# oppure se hai un vecchio users_db.json: python migrate_json_to_sqlite.py
+python scripts/seed_demo.py        # crea instance/activelist.db + 3 utenti demo + QR/avatar
+# oppure se hai un vecchio users_db.json: python scripts/migrate_json_to_sqlite.py
 
 # 5. Avvia
-python app.py
+python app.py          # dev
+# oppure: ./start.sh       # dev (Flask) | ./start.sh prod  (Gunicorn)
 # -> http://127.0.0.1:5000
 # -> http://127.0.0.1:5000/register
 # -> http://127.0.0.1:5000/verify?id=a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a1b2
@@ -111,25 +112,30 @@ Prova: `http://127.0.0.1:5000/verify?id=a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a1b2
 Activelist/
 ├── app.py                      # App Flask + SQLAlchemy (modello User)
 ├── wsgi.py                     # Entry point Gunicorn
-├── migrate_json_to_sqlite.py   # Migrazione one-shot JSON -> SQLite
-├── seed_demo.py                # Seed 3 utenti demo per portfolio
+├── start.sh                    # Avvio dev/prod (venv + Flask/Gunicorn)
+├── requirements.txt
+├── .editorconfig, .gitattributes, .gitignore
+├── .github/workflows/ci.yml    # CI: pip install + pytest
 ├── configuration_file.json     # Config (BASE_URL, SMTP) - ignorato da git
 ├── configuration_file.example.json
-├── instance/
-│   └── activelist.db           # SQLite (ignorato, creato al primo avvio)
-├── users_db.json               # Legacy JSON (migrato auto, poi ignorato)
-├── users_db.example.json
-├── email_counter.json          # Rate limiting
-├── requirements.txt
+├── instance/                   # SQLite (ignorato, creato al primo avvio)
+│   └── activelist.db
+├── scripts/
+│   ├── migrate_json_to_sqlite.py
+│   └── seed_demo.py            # Seed 3 utenti demo per portfolio
+├── docs/
+│   ├── case-study.md           # Testi portfolio pronti da copiare
+│   └── screenshots/README.md   # Guida screenshot
+├── tests/
+│   └── test_app.py             # 5 test con test_client (spiegabili)
 ├── static/
-│   ├── style.css
-│   ├── uploads/                # Foto utenti (ignorato, demo whitelistati)
-│   └── qrcodes/                # QR generati (ignorato, demo whitelistati)
+│   ├── style.css, styleinfocollab.css, corsi.css
+│   ├── gallery/, media/
+│   ├── uploads/                # Foto (ignorato, 3 demo whitelistati)
+│   └── qrcodes/                # QR (ignorato, 3 demo whitelistati)
 └── templates/
-    ├── index.html              # Home + news + collab
-    ├── register.html
-    ├── success.html
-    └── verify.html
+    ├── index.html, Infocollab.html, corsi.html
+    ├── register.html, success.html, verify.html
 ```
 
 ## Configurazione
@@ -185,7 +191,7 @@ gunicorn --bind unix:gunicorn.sock wsgi:app --workers 3 --timeout 60
 - Dati demo anonimizzati. I file reali `instance/activelist.db`, `users_db.json`, `static/uploads/*`, `static/qrcodes/*` sono in `.gitignore` e non committati (3 demo whitelistati).
 - Backup reali salvati come `*.bak-real` solo in locale, mai pushati.
 - Progetto nato per la lista **Active List - Liceo Torelli (Fano)**.
-- **Migrazione**: se hai un vecchio deploy con `users_db.json`, basta avviare `python app.py` e viene migrato automaticamente; oppure `python migrate_json_to_sqlite.py --force` per re-import forzato.
+- **Migrazione**: se hai un vecchio deploy con `users_db.json`, basta avviare `python app.py` e viene migrato automaticamente; oppure `python scripts/migrate_json_to_sqlite.py --force` per re-import forzato.
 
 ---
 

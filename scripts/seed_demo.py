@@ -9,7 +9,7 @@ import os, argparse
 from PIL import Image, ImageDraw, ImageFont
 import qrcode
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 import sys
 sys.path.insert(0, BASE_DIR)
 from app import app, db, User

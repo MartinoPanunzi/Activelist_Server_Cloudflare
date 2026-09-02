@@ -9,7 +9,7 @@ Uso: python migrate_json_to_sqlite.py [--force]
 import os, json, argparse, sys
 from datetime import datetime
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LEGACY = os.path.join(BASE_DIR, "users_db.json")
 
 # importa app e db dopo aver settato path
